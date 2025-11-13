@@ -98,6 +98,12 @@ export class SearchEngine {
           }
         }
         
+        // After trying all engines, return best results if any were found
+        if (bestResults.length > 0) {
+          console.error(`[SearchEngine] Using best results from ${bestEngine} (quality: ${bestQuality.toFixed(2)}) after trying all engines`);
+          return { results: bestResults, engine: bestEngine };
+        }
+        
         console.error(`[SearchEngine] All approaches failed, returning empty results`);
         return { results: [], engine: 'None' };
       });
